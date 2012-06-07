@@ -1,9 +1,14 @@
 //package sudoku;
 
+import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
+import java.io.*;
+import javax.swing.JOptionPane;
+import java.awt.*;
+import javax.swing.*;
 
 public class Sudoku4 {
 
@@ -34,13 +39,66 @@ public class Sudoku4 {
 
 		if(sikou()!=81){
 			sakugo();
-		}
+		}else{display();}
 	}
 
 
 	public static int  read_in() {
+                double a;
+                String filename,ret;
+
+/*
+setLayout(new GridLayout(2, 3));
+    add(b1);
+    add(b2);
+    add(b3);
+    add(b4);
+    add(b5);
+    add(b6);
+*/
+
+/*
+Object[] possibilities = {"ham", "spam", "yam"};
+String st = (String)JOptionPane.showInputDialog(
+                    frame,
+                    "Complete the sentence:\n"
+                    + "\"Green eggs and...\"",
+                    "Customized Dialog",
+                    JOptionPane.PLAIN_MESSAGE,
+                    icon,
+                    possibilities,
+                    "ham");
+
+//If a string was returned, say so.
+if ((st != null) && (st.length() > 0)) {
+    setLabel("Green eggs and... " + st + "!");
+    return;
+}
+
+//If you're here, the return value was null/empty.
+setLabel("Come on, finish the sentence!");
+*/
+
 		try{
-			FileReader in = new FileReader("morii.txt");
+                ret = JOptionPane.showInputDialog(null, "メッセージ","morii.txt");
+		if (ret == null) {
+			System.out.println("cancel or close");
+		} else {
+			System.out.println(ret);
+		}
+
+		//    BufferedReader d = new BufferedReader(new InputStreamReader(System.in));
+                //        System.out.print("please input number(1~3):");
+
+                //        a = Double.valueOf(d.readLine()).doubleValue();
+
+                 //       filename = d.readLine();
+                 //       filename = "morii.txt"; 
+                 //       if( a == 1 ) filename="morii.txt";
+                 //       if( a == 2 ) filename="morii_org.txt";
+                 //       if( a == 3 ) filename="morii2.txt";
+	//		FileReader in = new FileReader("morii.txt");
+			FileReader in = new FileReader(ret);
 			BufferedReader buf = new BufferedReader(in);
 			String s = new String();
 			int i=0;
@@ -132,6 +190,15 @@ public class Sudoku4 {
 							//	a[i][j][k]=false;
 
 							}else if(l==81){
+
+/*    GridLayoutTest4 frame = new GridLayoutTest4(a);
+
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setBounds(10, 10, 600, 400);
+    frame.setTitle("タイトル");
+    frame.setVisible(true);
+*/
+                                                                display();
 								return l;
 							}
 						}
@@ -292,17 +359,17 @@ public class Sudoku4 {
 				b[1]=0;
 				check(i,j,b);
 				if(b[0]==0){tedumari=1;
-				 System.out.print(b[0]+"(     )  ");
+				 System.out.print(b[0]+"(     ) ");
 				}else if(b[0]==1){
-					System.out.print("1("+b[1]+"    )  ");
+					System.out.print("1("+b[1]+"    ) ");
 					k++;
 					tubusi(i,j,b[1]);
 					a[i][j][0]=true;
-				}else if(b[0]==2){ System.out.print(b[0]+"("+ b[1]+"   )  ");
-				}else if(b[0]==3){ System.out.print(b[0]+"("+ b[1]+"  )  ");
-				}else if(b[0]==4){ System.out.print(b[0]+"("+ b[1]+" )  ");
-				}else if(b[0]==5){ System.out.print(b[0]+"("+ b[1]+")  ");
-				}else            { System.out.print(b[0]+"("+ b[1]+")  ");
+				}else if(b[0]==2){ System.out.print(b[0]+"("+ b[1]+"   ) ");
+				}else if(b[0]==3){ System.out.print(b[0]+"("+ b[1]+"  ) ");
+				}else if(b[0]==4){ System.out.print(b[0]+"("+ b[1]+" ) ");
+				}else if(b[0]==5){ System.out.print(b[0]+"("+ b[1]+") ");
+				}else            { System.out.print(b[0]+"("+ b[1]+") ");
 				}
 			}
 			System.out.println();
@@ -508,5 +575,15 @@ public class Sudoku4 {
 		}
 		return l;
 	}
+
+    public static void display(){
+    
+    GridLayoutTest4 frame = new GridLayoutTest4(a);
+
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setBounds(10, 10, 600, 400);
+    frame.setTitle("タイトル");
+    frame.setVisible(true);
+    }
 
 }
